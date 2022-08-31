@@ -8,6 +8,7 @@ module.exports.Get = (req, res) => {
 };
 
 module.exports.GetById = (req, res) => {
+    //let {id} = req.query;
     ClientService.getById().then((error, result) => {
         res.json({ error, result })
     })
@@ -15,17 +16,17 @@ module.exports.GetById = (req, res) => {
 
 module.exports.SaveShema = (req, res) => {
     ClientService.saveShema().then((error, result) => {
-        console.log(error, result)
+        res.json(error, result)
     })
 };
 module.exports.UpdateId = (req, res) => {
     ClientService.Update().then((error, result) => {
-        console.log(error, result)
+        res.json(error, result)
     })
 };
 
 module.exports.DeleteId = (req, res) => {
     ClientService.DeleteById().then((error, result) => {
-        console.log(error,result)
+        res.json(error,result)
     })
 };
