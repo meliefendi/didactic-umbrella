@@ -1,32 +1,26 @@
 const ClientService = require('../service/client.service');
 
-
-module.exports.Get = (req, res) => {
-    ClientService.getAll().then((error, result) => {
-        res.json({ error, result })
-    });
+module.exports.Get = async (req, res) => {
+    let result = await ClientService.get(req);
+    res.json(result);
 };
 
-module.exports.GetById = (req, res) => {
-    //let {id} = req.query;
-    ClientService.getById().then((error, result) => {
-        res.json({ error, result })
-    })
+module.exports.Create = async (req, res) => {
+    let result = await ClientService.create(req);
+    res.json(result);
 };
 
-module.exports.SaveShema = (req, res) => {
-    ClientService.saveShema().then((error, result) => {
-        res.json(error, result)
-    })
-};
-module.exports.UpdateId = (req, res) => {
-    ClientService.Update().then((error, result) => {
-        res.json(error, result)
-    })
+module.exports.Update = async (req, res) => {
+    let result = await ClientService.update(req);
+    res.json(result);
 };
 
-module.exports.DeleteId = (req, res) => {
-    ClientService.DeleteById().then((error, result) => {
-        res.json(error,result)
-    })
+module.exports.Delete = async (req, res) => {
+    let result = await ClientService.delete(req);
+    res.json(result);
+};
+
+module.exports.Patch = async (req, res) => {
+    let result = await ClientService.patch(req);
+    res.json(result);
 };
