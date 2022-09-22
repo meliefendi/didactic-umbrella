@@ -24,7 +24,12 @@ module.exports = class Shema {
             }
             sql = sql + additionalSql;
             let result = await connection.execute(sql, data)
-            return result;
+            if(id != null){
+                return result[0];
+            }else{
+                return result;
+            }
+          
         } catch (err) {
             throw Error(err)
         }
@@ -36,7 +41,7 @@ module.exports = class Shema {
             let sql = 'INSERT INTO client (name, lastName, password, mail, tcno) VALUES (?,?,?,?,?);'
             let data = [name, lastName, password, mail, tcno]
             let result = await connection.execute(sql, data);
-            return result;
+            return result[0];
         } catch (err) {
             throw Error(err)
         }

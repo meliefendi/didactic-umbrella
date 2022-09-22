@@ -7,20 +7,48 @@ module.exports.Get = async (req, res) => {
 
 module.exports.Create = async (req, res) => {
     let result = await ClientService.create(req);
-    res.json(result);
+    if(result != false){
+        let user = await ClientService.get({
+            query: {id: result.insertId}
+        });
+        res.json(user);
+    }else{
+        res.json(result);
+    }
 };
 
 module.exports.Update = async (req, res) => {
     let result = await ClientService.update(req);
-    res.json(result);
+    if(result != false){
+        let user = await ClientService.get({
+            query: {id: result.insertId}
+        });
+        res.json(user);
+    }else{
+        res.json(result);
+    }
 };
 
 module.exports.Delete = async (req, res) => {
     let result = await ClientService.delete(req);
-    res.json(result);
+    if(result != false){
+        let user = await ClientService.get({
+            query: {id: result.insertId}
+        });
+        res.json(user);
+    }else{
+        res.json(result);
+    }
 };
 
 module.exports.Patch = async (req, res) => {
     let result = await ClientService.patch(req);
-    res.json(result);
+    if(result != false){
+        let user = await ClientService.get({
+            query: {id: result.insertId}
+        });
+        res.json(user);
+    }else{
+        res.json(result);
+    }
 };
