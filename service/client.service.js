@@ -19,9 +19,7 @@ module.exports = class Shema {
             if (id != null) {
                 additionalSql = ' WHERE client.id=?';
                 data = [id]
-            } else {
-                additionalSql = '';
-            }
+            } 
             sql = sql + additionalSql;
             let result = await connection.execute(sql, data)
             if(id != null){
@@ -29,8 +27,7 @@ module.exports = class Shema {
             }else{
                 return result;
             }
-          
-        } catch (err) {
+                  } catch (err) {
             throw Error(err)
         }
     }

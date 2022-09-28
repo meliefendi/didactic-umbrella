@@ -1,3 +1,4 @@
+const { request } = require('express');
 const ClientService = require('../service/client.service');
 
 module.exports.Get = async (req, res) => {
@@ -21,7 +22,7 @@ module.exports.Update = async (req, res) => {
     let result = await ClientService.update(req);
     if(result != false){
         let user = await ClientService.get({
-            query: {id: result.insertId}
+            query: {id: req.query?.id}
         });
         res.json(user);
     }else{
@@ -30,11 +31,12 @@ module.exports.Update = async (req, res) => {
 };
 
 module.exports.Delete = async (req, res) => {
+    let user = await ClientService.get({
+        query: {id: req.query?.id}
+    });
     let result = await ClientService.delete(req);
     if(result != false){
-        let user = await ClientService.get({
-            query: {id: result.insertId}
-        });
+
         res.json(user);
     }else{
         res.json(result);
@@ -42,10 +44,11 @@ module.exports.Delete = async (req, res) => {
 };
 
 module.exports.Patch = async (req, res) => {
+    
     let result = await ClientService.patch(req);
     if(result != false){
         let user = await ClientService.get({
-            query: {id: result.insertId}
+            query: {id: req.query?.id}
         });
         res.json(user);
     }else{
